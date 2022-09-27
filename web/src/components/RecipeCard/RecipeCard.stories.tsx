@@ -16,6 +16,7 @@ import type { ComponentMeta } from '@storybook/react'
 import RecipeCard from './RecipeCard'
 
 const exampleRecipe = {
+  id: 'pad-thai-recipe-1114',
   name: 'Pad Thai',
   category: 'Weekday dinner',
   imageUrl:
@@ -27,7 +28,10 @@ const exampleRecipe = {
 export const generated = () => {
   return (
     <div className="flex columns-3">
-      <RecipeCard recipe={exampleRecipe} />
+      <RecipeCard
+        recipe={exampleRecipe}
+        onClick={(id) => alert(`Clicked ${id} recipe`)}
+      />
     </div>
   )
 }

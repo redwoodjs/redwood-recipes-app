@@ -1,18 +1,21 @@
 interface RecipeCardProps {
   recipe: {
+    id: string
     name: string
     category: string
     imageUrl: string
     cuisine: string
     blurb: string
   }
+  onClick?: (id: string) => void
 }
 
-const RecipeCard = ({ recipe }: RecipeCardProps) => {
+const RecipeCard = ({ recipe, onClick }: RecipeCardProps) => {
   return (
-    <div
+    <button
+      onClick={() => onClick && onClick(recipe.id)}
       key={recipe.name}
-      className="group inset-0 flex rounded-lg border border-gray-200 shadow-md transition hover:scale-105 hover:shadow-xl"
+      className="group inset-0 flex rounded-lg border border-gray-200 text-left shadow-md transition hover:scale-105 hover:shadow-xl"
     >
       <div className="space-y-4">
         <div className="aspect-w-3 aspect-h-2">
@@ -34,7 +37,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           </div>
         </section>
       </div>
-    </div>
+    </button>
   )
 }
 

@@ -26,7 +26,7 @@ const NavLayout = ({ children }: NavLayoutProps) => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-base font-medium text-slate-800 hover:text-orange-700"
+                    className="font-fancy text-base font-medium text-slate-800 hover:text-orange-700"
                   >
                     {link.name}
                   </a>
