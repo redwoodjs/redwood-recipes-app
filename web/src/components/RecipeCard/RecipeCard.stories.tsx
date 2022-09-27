@@ -25,7 +25,11 @@ const exampleRecipe = {
 }
 
 export const generated = () => {
-  return <RecipeCard recipe={exampleRecipe} />
+  return (
+    <div className="flex columns-3">
+      <RecipeCard recipe={exampleRecipe} />
+    </div>
+  )
 }
 
 export default {
