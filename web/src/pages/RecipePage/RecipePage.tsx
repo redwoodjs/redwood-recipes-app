@@ -4,6 +4,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import FlatHeader from 'src/components/FlatHeader/FlatHeader'
+import Recipe from 'src/components/Recipe/Recipe'
 import NavLayout from 'src/layouts/NavLayout'
 
 type RecipePageProps = {
@@ -20,15 +21,9 @@ const RecipePage = ({ id }: RecipePageProps) => {
     <NavLayout>
       <MetaTags title="Recipe" description="Recipe page" />
       <FlatHeader title={title} blurb={blurb} bgUrl={image} />
-      <h1>RecipePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/RecipePage/RecipePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>recipe</code>, link to me with `
-        <Link to={routes.recipe({ id: '42' })}>Recipe 42</Link>`
-      </p>
-      <p>The parameter passed to me is {id}</p>
+      <div className="mt-5 w-7/12">
+        <Recipe />
+      </div>
     </NavLayout>
   )
 }
