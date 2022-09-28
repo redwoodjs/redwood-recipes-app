@@ -2,10 +2,10 @@ interface RecipeCardProps {
   recipe: {
     id: string
     name: string
-    category: string
-    imageUrl: string
-    cuisine: string
-    blurb: string
+    category?: string
+    imageUrl?: string
+    cuisine?: string
+    blurb?: string
   }
   onClick?: (id: string) => void
 }

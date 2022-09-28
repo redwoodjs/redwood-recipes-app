@@ -7,7 +7,7 @@ import { useHeaderContext } from 'src/layouts/HeaderLayout/HeaderLayout'
 interface RecipeProps {
   title: string
   blurb: string
-  imageUrl: string
+  imageUrl?: string
   content: string
 }
 
