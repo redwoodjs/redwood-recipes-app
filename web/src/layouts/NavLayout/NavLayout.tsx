@@ -1,3 +1,5 @@
+import { Link, routes } from '@redwoodjs/router'
+
 import logoSrc from './wok.png'
 
 type NavLayoutProps = {
@@ -19,7 +21,9 @@ const NavLayout = ({ children }: NavLayoutProps) => {
         >
           <div className="flex w-full items-center justify-between border-b border-stone-500 py-4 lg:border-none">
             <div className="flex items-center">
-              <img src={logoSrc} className="white h-12 w-auto" alt="logo" />
+              <Link to={routes.landing()}>
+                <img src={logoSrc} className="white h-12 w-auto" alt="logo" />
+              </Link>
 
               <div className="ml-10 hidden space-x-8 md:block">
                 {navigation.map((link) => (

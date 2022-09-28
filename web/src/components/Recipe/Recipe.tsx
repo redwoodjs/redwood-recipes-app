@@ -23,10 +23,8 @@ const Recipe = ({ title, blurb, imageUrl: bgUrl, content }: RecipeProps) => {
   }, [setHeaderContent, title, blurb, bgUrl])
 
   return (
-    <div className="text-3xl">
-      <h2>{'Recipe'}</h2>
-
-      <ReactMarkdown className="text-xl">{content}</ReactMarkdown>
+    <div className="mb-20 text-3xl">
+      <ReactMarkdown className="prose prose-stone">{content}</ReactMarkdown>
     </div>
   )
 }

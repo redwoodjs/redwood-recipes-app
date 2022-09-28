@@ -8,5 +8,5 @@ module.exports = {
       fancy: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
