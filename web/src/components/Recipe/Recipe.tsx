@@ -4,23 +4,27 @@ import ReactMarkdown from 'react-markdown'
 
 import { useHeaderContext } from 'src/layouts/HeaderLayout/HeaderLayout'
 
-interface RecipeProps {
-  title: string
-  blurb: string
-  imageUrl?: string
-  content: string
+export interface RecipeProps {
+  recipe: {
+    name: string
+    blurb?: string
+    imageUrl?: string
+    content: string
+  }
 }
 
-const Recipe = ({ title, blurb, imageUrl: bgUrl, content }: RecipeProps) => {
+const Recipe = ({ recipe }: RecipeProps) => {
   const { setHeaderContent } = useHeaderContext()
+
+  const { name, blurb, imageUrl: bgUrl, content } = recipe
 
   useEffect(() => {
     setHeaderContent({
-      title,
+      title: name,
       blurb,
       bgUrl,
     })
-  }, [setHeaderContent, title, blurb, bgUrl])
+  }, [setHeaderContent, name, blurb, bgUrl])
 
   return (
     <div className="mb-20 text-3xl">

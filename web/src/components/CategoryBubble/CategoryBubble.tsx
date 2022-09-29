@@ -1,14 +1,19 @@
 interface CategoryBubbleProps {
   id?: string
   name: string
-  onClick?: () => void
+  onClick?: (categoryId: string) => void
   imageUrl?: string
 }
 
-const CategoryBubble = ({ imageUrl, name, onClick }: CategoryBubbleProps) => {
+const CategoryBubble = ({
+  imageUrl,
+  name,
+  onClick,
+  id,
+}: CategoryBubbleProps) => {
   return (
     <button
-      onClick={onClick}
+      onClick={() => onClick(id)}
       className="group relative flex h-32 w-32 rounded-full hover:shadow-xl lg:h-40 lg:w-40"
     >
       <div
