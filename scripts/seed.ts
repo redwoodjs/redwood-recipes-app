@@ -4,6 +4,8 @@ import path from 'path'
 import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
 
+import { hashPassword } from '@redwoodjs/api'
+
 export default async () => {
   try {
     const categoryData: Prisma.CategoryCreateArgs['data'][] = [
@@ -152,28 +154,21 @@ export default async () => {
       })
     )
 
-    // If using dbAuth and seeding users, you'll need to add a `hashedPassword`
-    // and associated `salt` to their record. Here's how to create them using
-    // the same algorithm that dbAuth uses internally:
-    //
-    //   import { hashPassword } from '@redwoodjs/api'
-    //
-    //   const users = [
-    //     { name: 'john', email: 'john@example.com', password: 'secret1' },
-    //     { name: 'jane', email: 'jane@example.com', password: 'secret2' }
-    //   ]
-    //
-    //   for (user of users) {
-    //     const [hashedPassword, salt] = hashPassword(user.password)
-    //     await db.user.create({
-    //       data: {
-    //         name: user.name,
-    //         email: user.email,
-    //         hashedPassword,
-    //         salt
-    //       }
-    //     })
-    //   }
+    const users = [
+      { email: 'john@example.com', password: 'password1' },
+      { email: 'jane@example.com', password: 'password2' },
+    ]
+
+    for (const user of users) {
+      const [hashedPassword, salt] = hashPassword(user.password)
+      await db.user.create({
+        data: {
+          email: user.email,
+          hashedPassword,
+          salt,
+        },
+      })
+    }
   } catch (error) {
     console.warn('Please define your seed data.')
     console.error(error)
