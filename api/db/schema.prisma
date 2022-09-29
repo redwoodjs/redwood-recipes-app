@@ -23,5 +23,6 @@ model Recipe {
 model Category {
   id        String   @id @default(cuid())
   name      String
+  imageUrl  String?
   recipes   Recipe[]
 }

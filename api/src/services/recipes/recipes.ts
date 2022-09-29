@@ -2,8 +2,9 @@ import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
-export const recipes: QueryResolvers['recipes'] = () => {
-  return db.recipe.findMany()
+export const recipes: QueryResolvers['recipes'] = ({ category }) => {
+  const filters = category && { where: { category: { id: category } } }
+  return db.recipe.findMany(filters)
 }
 
 export const recipe: QueryResolvers['recipe'] = ({ id }) => {
