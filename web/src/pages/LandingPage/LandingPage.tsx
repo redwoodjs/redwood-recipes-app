@@ -3,7 +3,7 @@ import { MetaTags } from '@redwoodjs/web'
 
 import HeroHeader from 'src/components/HeroHeader'
 import { generated as DummyCategorySlider } from 'src/components/HorizontalScroller/HorizontalScroller.stories'
-import { generated as DummyRecipe } from 'src/components/RecipeCard/RecipeCard.stories'
+import RecipesCell from 'src/components/RecipesCell'
 import NavLayout from 'src/layouts/NavLayout'
 
 const LandingPage = () => {
@@ -19,17 +19,7 @@ const LandingPage = () => {
       </section>
 
       <section className="my-4 grid grid-cols-1 gap-8 md:grid-cols-2 md:px-7 lg:grid-cols-3">
-        {/* TODO Replace with Cell once we have the API */}
-
-        <DummyRecipe />
-        <DummyRecipe />
-        <DummyRecipe />
-        <DummyRecipe />
-        <DummyRecipe />
-        <DummyRecipe />
-        <DummyRecipe />
-        <DummyRecipe />
-        {/* TODO Replace with Cell once we have the API */}
+        <RecipesCell />
       </section>
     </NavLayout>
   )
