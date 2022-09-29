@@ -1,3 +1,4 @@
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
 import logoSrc from './wok.png'
@@ -12,6 +13,8 @@ const navigation = [
 ]
 
 const NavLayout = ({ children }: NavLayoutProps) => {
+  const { isAuthenticated, logOut } = useAuth()
+
   return (
     <>
       <header className="mx-12 border-b-2">
@@ -38,12 +41,32 @@ const NavLayout = ({ children }: NavLayoutProps) => {
               </div>
             </div>
             <div className="ml-10 hidden space-x-4 md:block">
-              <button className="inline-block rounded-md border border-transparent bg-orange-600 py-2 px-4 text-base font-medium text-white hover:bg-opacity-75">
-                Sign in
-              </button>
-              <button className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-orange-600 hover:bg-indigo-50">
-                Sign up
-              </button>
+              {!isAuthenticated && (
+                <>
+                  {' '}
+                  <Link
+                    className="inline-block rounded-md border border-transparent bg-orange-600 py-2 px-4 text-base font-medium text-white hover:bg-opacity-75"
+                    to={routes.login()}
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    className="inline-block rounded-md border border-transparent bg-white py-2 px-4 text-base font-medium text-orange-600 hover:bg-indigo-50"
+                    to={routes.signup()}
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
+
+              {isAuthenticated && (
+                <button
+                  className="inline-block rounded-md border border-transparent bg-orange-600 py-2 px-4 text-base font-medium text-white hover:bg-opacity-75"
+                  onClick={() => logOut()}
+                >
+                  Log Out
+                </button>
+              )}
             </div>
           </div>
           <div className="flex flex-wrap justify-center space-x-6 py-4 lg:hidden">
