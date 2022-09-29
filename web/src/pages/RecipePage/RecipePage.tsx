@@ -1,7 +1,6 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-import { generated as DummyRecipe } from 'src/components/Recipe/Recipe.stories'
+import RecipeCell from 'src/components/RecipeCell'
 import HeaderLayout from 'src/layouts/HeaderLayout'
 import NavLayout from 'src/layouts/NavLayout'
 
@@ -14,11 +13,8 @@ const RecipePage = ({ id }: RecipePageProps) => {
     <NavLayout>
       <HeaderLayout>
         <MetaTags title="Recipe" description="Recipe page" />
-        <div className="mt-5 w-7/12">
-          {/* TODO Replace with Cell once we have the API */}
-          <DummyRecipe />
-          {/* TODO */}
-        </div>
+        <div className="mt-5 w-7/12"></div>
+        <RecipeCell id={id} />
       </HeaderLayout>
     </NavLayout>
   )
