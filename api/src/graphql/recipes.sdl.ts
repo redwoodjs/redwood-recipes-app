@@ -10,8 +10,8 @@ export const schema = gql`
   }
 
   type Query {
-    recipes(category: String): [Recipe!]! @requireAuth
-    recipe(id: String!): Recipe @requireAuth
+    recipes(category: String): [Recipe!]! @skipAuth
+    recipe(id: String!): Recipe @skipAuth
   }
 
   input CreateRecipeInput {
