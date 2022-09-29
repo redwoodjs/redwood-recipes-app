@@ -24375,6 +24375,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
+    "@redwoodjs/auth": 3.0.2
     "@redwoodjs/forms": 3.0.2
     "@redwoodjs/router": 3.0.2
     "@redwoodjs/web": 3.0.2

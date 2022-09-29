@@ -9,20 +9,30 @@ generator client {
 }
 
 model Recipe {
-  id        String   @id @default(cuid())
-  name      String
-  cuisine   String?  @default("Tasty")
-  createdAt DateTime @default(now())
-  content   String
-  imageUrl  String?
-  blurb     String?
+  id         String    @id @default(cuid())
+  name       String
+  cuisine    String?   @default("Tasty")
+  createdAt  DateTime  @default(now())
+  content    String
+  imageUrl   String?
+  blurb      String?
   categoryId String?
-  category Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
 }
 
 model Category {
-  id        String   @id @default(cuid())
-  name      String
-  imageUrl  String?
-  recipes   Recipe[]
+  id       String   @id @default(cuid())
+  name     String
+  imageUrl String?
+  recipes  Recipe[]
 }
+
+model User {
+  id                  Int       @id @default(autoincrement())
+  email               String    @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+}
+
