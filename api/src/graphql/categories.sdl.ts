@@ -7,8 +7,8 @@ export const schema = gql`
   }
 
   type Query {
-    categories: [Category!]! @requireAuth
-    category(id: String!): Category @requireAuth
+    categories: [Category!]! @skipAuth
+    category(id: String!): Category @skipAuth
   }
 
   input CreateCategoryInput {
