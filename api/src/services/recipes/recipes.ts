@@ -51,6 +51,17 @@ export const deleteRecipe: MutationResolvers['deleteRecipe'] = ({ id }) => {
   })
 }
 
+export const addToMyRecipes: MutationResolvers['addToMyRecipes'] = ({ id }) => {
+  return db.recipe.update({
+    data: {
+      users: {
+        connect: { id: context.currentUser.id },
+      },
+    },
+    where: { id },
+  })
+}
+
 export const Recipe: RecipeRelationResolvers = {
   category: (_obj, { root }) => {
     return db.recipe.findUnique({ where: { id: root?.id } }).category()
