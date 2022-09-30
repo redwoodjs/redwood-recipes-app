@@ -1,10 +1,12 @@
 import humanize from 'humanize-string'
+import type {
+  DeleteCategoryMutationVariables,
+  FindCategoryById,
+} from 'types/graphql'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
-import type { DeleteCategoryMutationVariables, FindCategoryById } from 'types/graphql'
 
 const DELETE_CATEGORY_MUTATION = gql`
   mutation DeleteCategoryMutation($id: String!) {
@@ -81,10 +83,12 @@ const Category = ({ category }: Props) => {
             <tr>
               <th>Id</th>
               <td>{category.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Name</th>
               <td>{category.name}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Image url</th>
               <td>{category.imageUrl}</td>
             </tr>

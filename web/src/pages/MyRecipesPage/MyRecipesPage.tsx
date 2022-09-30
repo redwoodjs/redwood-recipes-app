@@ -8,7 +8,7 @@ const MyRecipesPage = () => {
     <NavLayout>
       <MetaTags title="MyRecipes" description="MyRecipes page" />
 
-      <h1>MyRecipesPage</h1>
+      <h1 className="mb-10 text-2xl">Your Saved Recipes</h1>
       <section className="my-4 mb-20 grid grid-cols-1 gap-8 md:grid-cols-2 md:px-7 lg:grid-cols-3">
         <RecipesCell forUser={true} />
       </section>
