@@ -18,6 +18,7 @@ model Recipe {
   blurb      String?
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
+  users User[]
 }
 
 model Category {
@@ -35,4 +36,5 @@ model User {
   resetToken          String?
   resetTokenExpiresAt DateTime?
   roles               String    @default("USER")
+  recipes             Recipe[]
 }

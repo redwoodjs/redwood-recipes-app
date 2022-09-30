@@ -1,9 +1,25 @@
-import type { QueryResolvers, MutationResolvers } from 'types/graphql'
+import type {
+  QueryResolvers,
+  MutationResolvers,
+  RecipeRelationResolvers,
+} from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
-export const recipes: QueryResolvers['recipes'] = ({ category }) => {
-  const filters = category && { where: { category: { id: category } } }
+export const recipes: QueryResolvers['recipes'] = ({ category, forUser }) => {
+  const categoryFilter = category && { category: { id: category } }
+  const userFilter = forUser && {
+    users: {
+      some: {
+        id: context.currentUser.id,
+      },
+    },
+  }
+
+  const filters = {
+    where: { AND: [categoryFilter, userFilter].filter(Boolean) },
+  }
+
   return db.recipe.findMany(filters)
 }
 
@@ -33,4 +49,10 @@ export const deleteRecipe: MutationResolvers['deleteRecipe'] = ({ id }) => {
   return db.recipe.delete({
     where: { id },
   })
+}
+
+export const Recipe: RecipeRelationResolvers = {
+  category: (_obj, { root }) => {
+    return db.recipe.findUnique({ where: { id: root?.id } }).category()
+  },
 }

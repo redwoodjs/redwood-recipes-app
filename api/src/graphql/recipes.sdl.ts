@@ -7,10 +7,12 @@ export const schema = gql`
     content: String!
     imageUrl: String
     blurb: String
+    categoryId: String
+    category: Category
   }
 
   type Query {
-    recipes(category: String): [Recipe!]! @skipAuth
+    recipes(category: String, forUser: Boolean): [Recipe!]! @skipAuth
     recipe(id: String!): Recipe @skipAuth
   }
 
@@ -20,6 +22,7 @@ export const schema = gql`
     content: String!
     imageUrl: String
     blurb: String
+    categoryId: String
   }
 
   input UpdateRecipeInput {
@@ -28,6 +31,7 @@ export const schema = gql`
     content: String
     imageUrl: String
     blurb: String
+    categoryId: String
   }
 
   type Mutation {
