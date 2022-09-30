@@ -1,4 +1,6 @@
-import { useState, createContext, useContext, useMemo, useEffect } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
+
+import { Toaster } from '@redwoodjs/web/toast'
 
 import FlatHeader from 'src/components/FlatHeader/FlatHeader'
 
@@ -49,6 +51,8 @@ const HeaderLayout = ({ children }: HeaderLayoutProps) => {
 
   return (
     <HeaderLayoutProvider value={value}>
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+
       <FlatHeader title={title} blurb={blurb} bgUrl={bgUrl} />
       {children}
     </HeaderLayoutProvider>

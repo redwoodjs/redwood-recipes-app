@@ -11,10 +11,7 @@ const CategoriesLayout = ({ children }: CategoryLayoutProps) => {
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <header className="rw-header">
         <h1 className="rw-heading rw-heading-primary">
-          <Link
-            to={routes.adminCategories()}
-            className="rw-link"
-          >
+          <Link to={routes.adminCategories()} className="rw-link">
             Categories
           </Link>
         </h1>
