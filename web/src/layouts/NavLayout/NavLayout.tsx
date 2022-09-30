@@ -8,8 +8,8 @@ type NavLayoutProps = {
 }
 
 const navigation = [
-  { name: 'About', href: '#' },
-  { name: 'Your Recipes', href: '#' },
+  { name: 'About', to: '#' },
+  { name: 'Your Recipes', to: routes.myRecipes() },
 ]
 
 const NavLayout = ({ children }: NavLayoutProps) => {
@@ -30,13 +30,13 @@ const NavLayout = ({ children }: NavLayoutProps) => {
 
               <div className="ml-10 hidden space-x-8 md:block">
                 {navigation.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
+                    to={link.to}
                     className="font-fancy text-base font-medium text-slate-800 hover:text-orange-700"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

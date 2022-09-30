@@ -6,8 +6,8 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import RecipeCard from '../RecipeCard/RecipeCard'
 
 export const QUERY = gql`
-  query RecipesQuery($category: String) {
-    recipes: recipes(category: $category) {
+  query RecipesQuery($category: String, $forUser: Boolean) {
+    recipes: recipes(category: $category, forUser: $forUser) {
       id
       name
       blurb
@@ -27,6 +27,7 @@ export const Failure = ({ error }: CellFailureProps) => (
 
 interface RecipesCellProps extends CellSuccessProps<RecipesQuery> {
   category?: string | null
+  forUser?: boolean
 }
 
 export const Success = ({ recipes }: RecipesCellProps) => {
