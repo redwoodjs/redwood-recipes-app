@@ -7,11 +7,19 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route } from '@redwoodjs/router'
+import { Set, Router, Route } from '@redwoodjs/router'
+
+import CategoriesLayout from 'src/layouts/Admin/CategoriesLayout'
 
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={CategoriesLayout}>
+        <Route path="/admin/categories/new" page={AdminCategoryNewCategoryPage} name="adminNewCategory" />
+        <Route path="/admin/categories/{id}/edit" page={AdminCategoryEditCategoryPage} name="adminEditCategory" />
+        <Route path="/admin/categories/{id}" page={AdminCategoryCategoryPage} name="adminCategory" />
+        <Route path="/admin/categories" page={AdminCategoryCategoriesPage} name="adminCategories" />
+      </Set>
       <Route path="/login" page={LoginPage} name="login" />
       <Route path="/signup" page={SignupPage} name="signup" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
