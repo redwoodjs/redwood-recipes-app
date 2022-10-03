@@ -1,11 +1,62 @@
-import type { Prisma, Recipe } from '@prisma/client'
+import { Prisma, Recipe } from '@prisma/client'
+
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.RecipeCreateArgs>({
   recipe: {
-    one: { data: { name: 'String', content: 'String' } },
-    two: { data: { name: 'String', content: 'String' } },
+    beanSoup: { data: { name: 'Bean Soup', blurb: 'bean soup', content: '' } },
+    burgers: {
+      data: {
+        name: 'Juicy Burger',
+        content: 'The best burgers you have ever had',
+        blurb: 'Tasty burgers!',
+      },
+    },
   },
 })
 
-export type StandardScenario = ScenarioData<Recipe, 'recipe'>
+const vegeCategory: Prisma.CategoryCreateArgs['data'] = {
+  name: 'Vegetarian',
+  id: 'vege-1',
+}
+
+const mockUser: Prisma.UserCreateArgs['data'] = {
+  id: 55,
+  email: 'hello@bazinga.com',
+  roles: 'USER',
+  hashedPassword: '',
+  salt: '',
+}
+
+export const categoryScenarios = defineScenario<Prisma.RecipeCreateArgs>({
+  recipe: {
+    padThai: {
+      data: {
+        name: 'Pad Thai',
+        content: 'The best pad thai you have ever had',
+        blurb: 'Tasty pad thai!',
+        category: {
+          create: vegeCategory,
+        },
+      },
+    },
+    beanSoup: {
+      data: {
+        name: 'Bean Soup',
+        blurb: 'bean soup',
+        content: '',
+        users: {
+          create: mockUser,
+        },
+      },
+    },
+  },
+})
+
+export type StandardScenario = ScenarioData<
+  Recipe,
+  'recipe',
+  'beanSoup' | 'burgers'
+>
+
+export type CategoryScenario = ScenarioData<Recipe, 'recipe', 'padThai'>

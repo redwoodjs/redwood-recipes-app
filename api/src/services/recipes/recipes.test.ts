@@ -23,10 +23,34 @@ describe('recipes', () => {
   })
 
   scenario('returns a single recipe', async (scenario: StandardScenario) => {
-    const result = await recipe({ id: scenario.recipe.one.id })
+    const result = await recipe({ id: scenario.recipe.beanSoup.id })
 
-    expect(result).toEqual(scenario.recipe.one)
+    expect(result).toEqual(scenario.recipe.beanSoup)
   })
+
+  scenario('categoryScenarios', 'returns vegeterial recipes', async () => {
+    const result = await recipes({ category: 'vege-1' })
+
+    const [firstResult] = result
+    expect(result.length).toEqual(1)
+
+    // @ts-expect-error - QueryResolvers type is wrapped in promise
+    expect(firstResult.name).toBe('Pad Thai')
+  })
+
+  scenario(
+    'categoryScenarios',
+    'returns recipes for user1 recipes',
+    async () => {
+      mockCurrentUser({
+        id: 55,
+      })
+
+      const result = await recipes({ forUser: true })
+
+      expect(result.length).toEqual(1)
+    }
+  )
 
   scenario('creates a recipe', async () => {
     const result = await createRecipe({
@@ -38,18 +62,22 @@ describe('recipes', () => {
   })
 
   scenario('updates a recipe', async (scenario: StandardScenario) => {
-    const original = (await recipe({ id: scenario.recipe.one.id })) as Recipe
+    const original = (await recipe({
+      id: scenario.recipe.beanSoup.id,
+    })) as Recipe
+
+    // MARK update the beansoup content
     const result = await updateRecipe({
       id: original.id,
-      input: { name: 'String2' },
+      input: { content: 'Bean soup updated content' },
     })
 
-    expect(result.name).toEqual('String2')
+    expect(result.content).toEqual('Bean soup updated content')
   })
 
   scenario('deletes a recipe', async (scenario: StandardScenario) => {
     const original = (await deleteRecipe({
-      id: scenario.recipe.one.id,
+      id: scenario.recipe.beanSoup.id,
     })) as Recipe
     const result = await recipe({ id: original.id })
 
