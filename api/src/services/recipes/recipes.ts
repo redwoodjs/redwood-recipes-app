@@ -6,7 +6,10 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const recipes: QueryResolvers['recipes'] = ({ category, forUser }) => {
+export const recipes: QueryResolvers['recipes'] = ({
+  category,
+  forUser,
+} = {}) => {
   const categoryFilter = category && { category: { id: category } }
   const userFilter = forUser && {
     users: {
