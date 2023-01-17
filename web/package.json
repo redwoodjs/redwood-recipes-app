@@ -16,6 +16,7 @@
     "@redwoodjs/auth-dbauth-web": "^4.1.0-canary.521",
     "@redwoodjs/forms": "^4.1.0-canary.521",
     "@redwoodjs/router": "^4.1.0-canary.521",
+    "@redwoodjs/vite": "4.1.0-canary.521+f1c00d8e3",
     "@redwoodjs/web": "^4.1.0-canary.521",
     "prop-types": "15.8.1",
     "react": "17.0.2",
