@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "^4.0.0-rc.437",
-    "@redwoodjs/auth-dbauth-api": "4.0.0-rc.437+92c99756d",
-    "@redwoodjs/graphql-server": "^4.0.0-rc.437"
+    "@redwoodjs/api": "^4.1.0-canary.521",
+    "@redwoodjs/auth-dbauth-api": "^4.1.0-canary.521",
+    "@redwoodjs/graphql-server": "^4.1.0-canary.521"
   }
 }
