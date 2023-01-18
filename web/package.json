@@ -18,6 +18,7 @@
     "@redwoodjs/router": "^4.1.0-canary.521",
     "@redwoodjs/vite": "4.1.0-canary.521+f1c00d8e3",
     "@redwoodjs/web": "^4.1.0-canary.521",
+    "@storybook/builder-vite": "^0.3.0",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
