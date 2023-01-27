@@ -11,9 +11,11 @@ import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import CategoriesLayout from 'src/layouts/Admin/CategoriesLayout'
 
+import { useAuth } from './auth'
+
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Private unauthenticated="login">
         <Route path="/my-recipes" page={MyRecipesPage} name="myRecipes" />
         <Set wrap={CategoriesLayout}>
