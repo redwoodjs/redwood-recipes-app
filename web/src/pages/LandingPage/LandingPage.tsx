@@ -7,6 +7,7 @@ import CategoriesCell from 'src/components/CategoriesCell'
 import HeroHeader from 'src/components/HeroHeader'
 import RecipesCell from 'src/components/RecipesCell'
 import NavLayout from 'src/layouts/NavLayout'
+// import { CustomFormComponent, Form } from 'src/lib/Forms'
 
 const LandingPage = () => {
   const toggleCategory = (catId: string) => {
@@ -21,6 +22,7 @@ const LandingPage = () => {
 
   return (
     <NavLayout>
+      {/* <Form></Form> */}
       <MetaTags title="Landing" description="Landing page" />
       <HeroHeader />
 
