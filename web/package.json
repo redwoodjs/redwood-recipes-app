@@ -13,12 +13,12 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/auth": "4.1.0-canary.631",
-    "@redwoodjs/auth-dbauth-web": "4.1.0-canary.631",
-    "@redwoodjs/forms": "4.1.0-canary.631",
-    "@redwoodjs/router": "4.1.0-canary.631",
-    "@redwoodjs/vite": "4.1.0-canary.631+33b79fb2e",
-    "@redwoodjs/web": "4.1.0-canary.631",
+    "@redwoodjs/auth": "4.1.0-rc.263",
+    "@redwoodjs/auth-dbauth-web": "4.1.0-rc.263",
+    "@redwoodjs/forms": "4.1.0-rc.263",
+    "@redwoodjs/router": "4.1.0-rc.263",
+    "@redwoodjs/vite": "4.1.0-rc.263",
+    "@redwoodjs/web": "4.1.0-rc.263",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

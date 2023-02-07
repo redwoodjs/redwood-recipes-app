@@ -4,7 +4,7 @@ import path from 'path'
 import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
 
-import { hashPassword } from '@redwoodjs/api'
+import { hashPassword } from '@redwoodjs/auth-dbauth-api'
 
 export default async () => {
   try {
