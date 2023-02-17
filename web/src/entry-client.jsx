@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { hydrateRoot, createRoot } from 'react-dom/client'
 
 import App from './App'
@@ -10,8 +12,15 @@ import App from './App'
 const redwoodAppElement = document.getElementById('redwood-app')
 
 if (redwoodAppElement.children?.length > 0) {
-  hydrateRoot(redwoodAppElement, <App />)
+  console.log('Definitely hydrating')
+  hydrateRoot(
+    redwoodAppElement,
+    <Suspense>
+      <App />
+    </Suspense>
+  )
 } else {
+  console.log('Rendering from scratch 🇦🇼🇦🇼')
   const root = createRoot(redwoodAppElement)
   root.render(<App />)
 }
