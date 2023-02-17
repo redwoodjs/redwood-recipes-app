@@ -10,8 +10,13 @@
 // Ensures that production builds do not include the error page
 let RedwoodDevFatalErrorPage = undefined
 if (process.env.NODE_ENV === 'development') {
-  RedwoodDevFatalErrorPage =
-    require('@redwoodjs/web/dist/components/DevFatalErrorPage').DevFatalErrorPage
+  const devErrorPage = await import(
+    '@redwoodjs/web/dist/components/DevFatalErrorPage'
+  )
+
+  // @MARK @TODO
+  // Not sure why, but in SSR the devErrorPage is undefined
+  RedwoodDevFatalErrorPage = devErrorPage?.DevFatalErrorPage
 }
 
 export default RedwoodDevFatalErrorPage ||
