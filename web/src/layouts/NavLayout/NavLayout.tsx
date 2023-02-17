@@ -8,17 +8,17 @@ type NavLayoutProps = {
   children?: React.ReactNode
 }
 
-const navigation = [
-  { name: 'About', to: '#' },
-  { name: 'Your Recipes', to: routes.myRecipes() },
-]
-
 const NavLayout = ({ children }: NavLayoutProps) => {
   const { isAuthenticated, logOut } = useAuth()
 
+  const navigation = [
+    { name: 'About', to: '#' },
+    { name: 'Your Recipes', to: routes.myRecipes() },
+  ]
+
   return (
     <>
-      <header className="mx-12 border-b-2">
+      <div className="mx-12 border-b-2">
         <nav
           className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
           aria-label="Top"
@@ -82,7 +82,7 @@ const NavLayout = ({ children }: NavLayoutProps) => {
             ))}
           </div>
         </nav>
-      </header>
+      </div>
       <main className="mt-8 flex flex-col items-center justify-center">
         {children}
       </main>
