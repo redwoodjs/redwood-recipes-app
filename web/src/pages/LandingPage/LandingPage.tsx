@@ -5,7 +5,9 @@ import { MetaTags } from '@redwoodjs/web'
 
 import CategoriesCell from 'src/components/CategoriesCell'
 import HeroHeader from 'src/components/HeroHeader'
+import RecipeCard from 'src/components/RecipeCard'
 import RecipesCell from 'src/components/RecipesCell'
+import { useServerData } from 'src/entry-server'
 import NavLayout from 'src/layouts/NavLayout'
 // import { CustomFormComponent, Form } from 'src/lib/Forms'
 
@@ -17,6 +19,9 @@ const LandingPage = () => {
       setSelectedCategory(catId)
     }
   }
+
+  const data = useServerData()
+  console.log(`👉 \n ~ file: LandingPage.tsx:23 ~ data:`, data)
 
   const [selectedCategory, setSelectedCategory] = useState<string>(null)
 
@@ -31,7 +36,11 @@ const LandingPage = () => {
       </section>
 
       <section className="my-4 mb-20 grid grid-cols-1 gap-8 md:grid-cols-2 md:px-7 lg:grid-cols-3">
-        <RecipesCell category={selectedCategory} />
+        {/* <RecipesCell category={selectedCategory} /> */}
+
+        {data.recipes.map((item) => {
+          return <RecipeCard recipe={item} key={item.id} />
+        })}
       </section>
     </NavLayout>
   )

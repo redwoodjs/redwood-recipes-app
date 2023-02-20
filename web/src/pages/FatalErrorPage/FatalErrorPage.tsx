@@ -9,7 +9,7 @@
 
 // Ensures that production builds do not include the error page
 let RedwoodDevFatalErrorPage = undefined
-if (process.env.NODE_ENV === 'development') {
+if (!import.meta.env.SSR && process.env.NODE_ENV === 'development') {
   const devErrorPage = await import(
     '@redwoodjs/web/dist/components/DevFatalErrorPage'
   )

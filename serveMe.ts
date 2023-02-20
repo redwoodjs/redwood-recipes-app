@@ -1,13 +1,24 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import fs from 'fs'
+import path from 'path'
 
+import { config } from 'dotenv-defaults'
 import express from 'express'
 import { createServer as createViteServer } from 'vite'
 
 import { getPaths } from '@redwoodjs/internal/dist/paths.js'
 
 globalThis.RWJS_ENV = {}
-globalThis.RWJS_VITE_SSR_TEMP = true
+
+// ---- This is for debugging purposes only ----
+// We need the dotenv, so that prisma knows the DATABASE env var
+// Normally the RW cli loads this for us.... something to think about
+config({
+  path: path.join(getPaths().base, '.env'),
+  defaults: path.join(getPaths().base, '.env.defaults'),
+  multiline: true,
+})
+//------------------------------------------------
 
 async function createServer() {
   const app = express()
@@ -49,6 +60,7 @@ async function createServer() {
       let routeContext = {}
       if (route && route.routeHooks) {
         try {
+          // @MARK we will have to load this from dist, not from the source after build
           const routeHooks = await vite.ssrLoadModule(route.routeHooks)
 
           // @MARK need to agree on what the parameters are for the renderHooks
@@ -71,6 +83,12 @@ async function createServer() {
       //    function calls appropriate framework SSR APIs,
       //    e.g. ReactDOMServer.renderToString()
       const appHtml = await render(routeContext, url)
+
+      // @MARK: Inject server data so client side also has access to useServerData
+      template =
+        `<script>function __loadServerData() {
+          return ${JSON.stringify(routeContext)}
+          }</script>` + template
 
       // 5. Inject the app-rendered HTML into the template.
       const html = template.replace(

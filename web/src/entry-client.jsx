@@ -1,8 +1,11 @@
+/// <reference types="vite/client" />
+
 import { Suspense } from 'react'
 
 import { hydrateRoot, createRoot } from 'react-dom/client'
 
 import App from './App'
+import { ServerContextProvider } from './entry-server'
 /**
  * When `#redwood-app` isn't empty then it's very likely that you're using
  * prerendering. So React attaches event listeners to the existing markup
@@ -16,7 +19,9 @@ if (redwoodAppElement.children?.length > 0) {
   hydrateRoot(
     redwoodAppElement,
     <Suspense>
-      <App />
+      <ServerContextProvider value={__loadServerData()}>
+        <App />
+      </ServerContextProvider>
     </Suspense>
   )
 } else {
