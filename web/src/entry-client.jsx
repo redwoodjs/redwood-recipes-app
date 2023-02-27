@@ -12,20 +12,4 @@ import { ServerContextProvider } from './entry-server'
  * rather than replacing it.
  * https://reactjs.org/docs/react-dom-client.html#hydrateroot
  */
-const redwoodAppElement = document.getElementById('redwood-app')
-
-if (redwoodAppElement.children?.length > 0) {
-  console.info('Definitely hydrating')
-  hydrateRoot(
-    redwoodAppElement,
-    <Suspense fallback={<h1>🇨🇭 Top Level Suspense</h1>}>
-      <ServerContextProvider value={__loadServerData()}>
-        <App />
-      </ServerContextProvider>
-    </Suspense>
-  )
-} else {
-  console.log('Rendering from scratch 🇦🇼🇦🇼')
-  const root = createRoot(redwoodAppElement)
-  root.render(<App />)
-}
+hydrateRoot(document, <App />)

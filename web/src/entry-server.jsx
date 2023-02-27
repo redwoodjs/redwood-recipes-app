@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 
-import { renderToString } from 'react-dom/server'
+import { renderToPipeableStream } from 'react-dom/server'
 
 import { LocationProvider } from '@redwoodjs/router'
 
@@ -23,19 +23,25 @@ export const useServerData = () => {
   return React.useContext(ServerContext)
 }
 
-export const render = (routeContext, url) => {
-  return renderToString(
-    <Suspense>
-      <ServerContextProvider value={routeContext}>
-        <LocationProvider
-          location={{
-            pathname: url,
-          }}
-          mode="sync"
-        >
-          <App />
-        </LocationProvider>
-      </ServerContextProvider>
-    </Suspense>
+export const render = (routeContext, url, res) => {
+  const { pipe } = renderToPipeableStream(
+    <ServerContextProvider value={routeContext}>
+      <LocationProvider
+        location={{
+          pathname: url,
+        }}
+        mode="sync"
+      >
+        <App />
+      </LocationProvider>
+    </ServerContextProvider>,
+    {
+      // bootstrapScripts: [],
+      bootstrapModules: ['/bootstrapScript.js', '/entry-client.jsx'],
+      onShellReady() {
+        res.setHeader('content-type', 'text/html')
+        pipe(res)
+      },
+    }
   )
 }
