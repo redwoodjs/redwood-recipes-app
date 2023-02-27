@@ -36,11 +36,11 @@ const LandingPage = () => {
       </section>
 
       <section className="my-4 mb-20 grid grid-cols-1 gap-8 md:grid-cols-2 md:px-7 lg:grid-cols-3">
-        {/* <RecipesCell category={selectedCategory} /> */}
-
+        <RecipesCell category={selectedCategory} />
+        {/*
         {data.recipes.map((item) => {
           return <RecipeCard recipe={item} key={item.id} />
-        })}
+        })} */}
       </section>
     </NavLayout>
   )

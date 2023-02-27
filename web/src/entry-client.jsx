@@ -15,10 +15,10 @@ import { ServerContextProvider } from './entry-server'
 const redwoodAppElement = document.getElementById('redwood-app')
 
 if (redwoodAppElement.children?.length > 0) {
-  console.log('Definitely hydrating')
+  console.info('Definitely hydrating')
   hydrateRoot(
     redwoodAppElement,
-    <Suspense>
+    <Suspense fallback={<h1>🇨🇭 Top Level Suspense</h1>}>
       <ServerContextProvider value={__loadServerData()}>
         <App />
       </ServerContextProvider>

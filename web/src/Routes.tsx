@@ -10,7 +10,7 @@
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import CategoriesLayout from 'src/layouts/Admin/CategoriesLayout'
-import SimplePage from 'src/pages/SimplePage'
+// import SimplePage from 'src/pages/SimplePage'
 
 import { useAuth } from './auth'
 

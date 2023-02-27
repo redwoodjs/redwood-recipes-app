@@ -11,6 +11,7 @@ export const recipes: QueryResolvers['recipes'] = ({
   forUser,
 } = {}) => {
   const categoryFilter = category && { category: { id: category } }
+
   const userFilter = forUser && {
     users: {
       some: {
