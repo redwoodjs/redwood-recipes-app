@@ -23,8 +23,8 @@ export const useServerData = () => {
   return React.useContext(ServerContext)
 }
 
-export const render = (routeContext, url, res) => {
-  const { pipe } = renderToPipeableStream(
+export const serverEntry = ({ routeContext, url }) => {
+  return (
     <ServerContextProvider value={routeContext}>
       <LocationProvider
         location={{
@@ -34,14 +34,6 @@ export const render = (routeContext, url, res) => {
       >
         <App />
       </LocationProvider>
-    </ServerContextProvider>,
-    {
-      // bootstrapScripts: [],
-      bootstrapModules: ['/bootstrapScript.js', '/entry-client.jsx'],
-      onShellReady() {
-        res.setHeader('content-type', 'text/html')
-        pipe(res)
-      },
-    }
+    </ServerContextProvider>
   )
 }

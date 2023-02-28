@@ -4,6 +4,7 @@ import path from 'path'
 
 import { config } from 'dotenv-defaults'
 import express from 'express'
+import { renderToPipeableStream } from 'react-dom/server'
 import { createServer as createViteServer } from 'vite'
 
 import { getPaths } from '@redwoodjs/internal/dist/paths.js'
@@ -66,9 +67,22 @@ async function createServer() {
       // 3. Load the server entry. vite.ssrLoadModule automatically transforms
       //    your ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
-      const { render } = await vite.ssrLoadModule('web/src/entry-server')
+      const { serverEntry } = await vite.ssrLoadModule('web/src/entry-server')
 
-      await render(routeContext, url, res)
+      // Serialize route context so it can be passed to the client entry
+      const serialisedRouteContext = JSON.stringify(routeContext)
+
+      const { pipe } = renderToPipeableStream(
+        serverEntry({ url, routeContext }),
+        {
+          bootstrapScriptContent: `window.__loadServerData = function() { return ${serialisedRouteContext} }`,
+          bootstrapModules: ['/bootstrapScript.js', '/entry-client.jsx'],
+          onShellReady() {
+            res.setHeader('content-type', 'text/html')
+            pipe(res)
+          },
+        }
+      )
     } catch (e) {
       // send back a SPA page
       // res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
