@@ -10,7 +10,6 @@ type RecipePageProps = {
 }
 
 const RecipePage = ({ id }: RecipePageProps) => {
-  console.log(`👉 \n ~ Route parameter id on RecipePage:`, id)
   return (
     <NavLayout>
       <HeaderLayout>

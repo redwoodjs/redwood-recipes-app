@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import fs from 'fs'
 import path from 'path'
 
 import { config } from 'dotenv-defaults'
@@ -8,6 +7,7 @@ import { renderToPipeableStream } from 'react-dom/server'
 import { createServer as createViteServer } from 'vite'
 
 import { getPaths } from '@redwoodjs/internal/dist/paths.js'
+import type { VirtualRoute } from '@redwoodjs/vite'
 
 globalThis.RWJS_ENV = {}
 
@@ -30,6 +30,8 @@ async function createServer() {
   const vite = await createViteServer({
     configFile: 'web/vite.config.ts',
     server: { middlewareMode: true },
+    logLevel: 'info',
+    clearScreen: false,
     appType: 'custom',
   })
 
@@ -39,21 +41,26 @@ async function createServer() {
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl
-
     try {
       // @MARK: using virtual modules here, so we can actually find the chunk we need! 🤯
       const { default: routes } = await vite.ssrLoadModule('virtual:rw-routes')
 
-      const route = routes.find((route: any) => {
-        // @MARK: we need to match!
-        // matchPathToUrl(route.path, url)
-        return route.path === url
+      const currentRoute = routes.find((route: VirtualRoute) => {
+        if (!route.matchRegexString) {
+          // This is the 404/NotFoundPage case
+          return false
+        }
+
+        const matches = [
+          ...url.matchAll(new RegExp(route.matchRegexString, 'g')),
+        ]
+        return matches.length > 0
       })
 
       let routeContext = {}
-      if (route && route.routeHooks) {
+      if (currentRoute && currentRoute.routeHooks) {
         try {
-          const routeHooks = await vite.ssrLoadModule(route.routeHooks)
+          const routeHooks = await vite.ssrLoadModule(currentRoute.routeHooks)
           const serverData = await routeHooks.serverData(req)
 
           routeContext = {

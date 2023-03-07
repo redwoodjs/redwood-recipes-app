@@ -21,7 +21,7 @@ const LandingPage = () => {
   }
 
   const data = useServerData()
-  console.log(`👉 \n ~ file: LandingPage.tsx:23 ~ data:`, data)
+  // console.log(`👉 \n ~ file: LandingPage.tsx:23 ~ data:`, data)
 
   const [selectedCategory, setSelectedCategory] = useState<string>(null)
 

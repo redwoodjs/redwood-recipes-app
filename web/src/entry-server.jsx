@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { renderToPipeableStream } from 'react-dom/server'
-
 import { LocationProvider } from '@redwoodjs/router'
 
 // @MARK if we do this, vite will also transform the routehooks
