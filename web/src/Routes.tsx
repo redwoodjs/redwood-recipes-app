@@ -17,23 +17,25 @@ import { useAuth } from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <Route path="/simple" page={SimplePage} name="simple" />
-      <Private unauthenticated="login">
-        <Route path="/my-recipes" page={MyRecipesPage} name="myRecipes" />
-        <Set wrap={CategoriesLayout}>
-          <Route path="/admin/categories/new" page={AdminCategoryNewCategoryPage} name="adminNewCategory" />
-          <Route path="/admin/categories/{id}/edit" page={AdminCategoryEditCategoryPage} name="adminEditCategory" />
-          <Route path="/admin/categories/{id}" page={AdminCategoryCategoryPage} name="adminCategory" />
-          <Route path="/admin/categories" page={AdminCategoryCategoriesPage} name="adminCategories" />
-        </Set>
-      </Private>
-      <Route path="/login" page={LoginPage} name="login" />
-      <Route path="/signup" page={SignupPage} name="signup" />
-      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
-      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-      <Route path="/recipe/{id}" page={RecipePage} name="recipe" />
-      <Route path="/" page={LandingPage} name="landing" prerender />
-      <Route notfound page={NotFoundPage} />
+      <Set whileLoadingPage={() => <h1>WHILE LOADING PAGE! 🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴</h1>}>
+        <Route path="/simple" name="simple" page={SimplePage} />
+        <Private unauthenticated="login">
+          <Route path="/my-recipes" name="myRecipes" redirect="/" />
+          <Set wrap={CategoriesLayout}>
+            <Route path="/admin/categories/new" page={AdminCategoryNewCategoryPage} name="adminNewCategory" />
+            <Route path="/admin/categories/{id}/edit" page={AdminCategoryEditCategoryPage} name="adminEditCategory" />
+            <Route path="/admin/categories/{id}" page={AdminCategoryCategoryPage} name="adminCategory" />
+            <Route path="/admin/categories" page={AdminCategoryCategoriesPage} name="adminCategories" />
+          </Set>
+        </Private>
+        <Route path="/login" page={LoginPage} name="login" />
+        <Route path="/signup" page={SignupPage} name="signup" />
+        <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+        <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+        <Route path="/recipe/{id}" page={RecipePage} name="recipe" />
+        <Route path="/" page={LandingPage} name="landing" />
+        <Route notfound page={NotFoundPage} />
+      </Set>
     </Router>
   )
 }
