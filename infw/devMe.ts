@@ -28,7 +28,7 @@ async function createServer() {
   // 'custom', disabling Vite's own HTML serving logic so parent server
   // can take control
   const vite = await createViteServer({
-    configFile: 'web/vite.config.ts',
+    configFile: '../web/vite.config.ts',
     server: { middlewareMode: true },
     logLevel: 'info',
     clearScreen: false,

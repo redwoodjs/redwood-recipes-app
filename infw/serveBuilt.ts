@@ -150,12 +150,16 @@ async function createServer() {
             { css: indexEntry.css }
           )} }`,
           // @NOTE have to add slash so subpaths still pick up the right file
-          // @TODO, also add the bundles from routeManifest
+          // Vite is currently producing modules not scripts: https://vitejs.dev/config/build-options.html#build-target
           bootstrapModules: ['/' + indexEntry.file, '/' + currentRoute.bundle],
           onShellReady() {
             res.setHeader('content-type', 'text/html')
             pipe(res)
           },
+          // onAllReady() {
+          //   res.setHeader('content-type', 'text/html')
+          //   pipe(res)
+          // }
         }
       )
     } catch (e) {
