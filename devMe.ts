@@ -43,9 +43,13 @@ async function createServer() {
     const url = req.originalUrl
     try {
       // @MARK: using virtual modules here, so we can actually find the chunk we need! 🤯
-      const { default: routes } = await vite.ssrLoadModule('virtual:rw-routes')
+      // I'm not convinved we need virtual modules anymore..... or we'd need to rollup the logic in serveBuilt
+      // into a function in internal, and generate the virtual module using it
+      const { default: routes } = (await vite.ssrLoadModule(
+        'virtual:rw-routes'
+      )) as { default: VirtualRoute[] }
 
-      const currentRoute = routes.find((route: VirtualRoute) => {
+      const currentRoute = routes.find((route) => {
         if (!route.matchRegexString) {
           // This is the 404/NotFoundPage case
           return false
@@ -71,6 +75,12 @@ async function createServer() {
         }
       }
 
+      if (!currentRoute) {
+        // @TODO do something
+      }
+
+      console.log(`👉 \n ~ file: devMe.ts:66 ~ currentRoute:`, currentRoute)
+
       // 3. Load the server entry. vite.ssrLoadModule automatically transforms
       //    your ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
@@ -80,11 +90,15 @@ async function createServer() {
       const serialisedRouteContext = JSON.stringify(routeContext)
 
       const { pipe } = renderToPipeableStream(
-        serverEntry({ url, routeContext }),
+        // CSS is handled by Vite in dev mode, we don't need to worry about it in dev
+        serverEntry({ url, routeContext, css: [] }),
         {
           bootstrapScriptContent: `window.__loadServerData = function() { return ${serialisedRouteContext} }`,
-          bootstrapModules: ['/bootstrapScript.js', '/entry-client.jsx'],
-          onShellReady() {
+          bootstrapModules: [
+            '/bootstrapScript.js', // Bootstrap is Vite react HMR stuff
+            '/entry-client.jsx',
+          ],
+          onAllReady() {
             res.setHeader('content-type', 'text/html')
             pipe(res)
           },
