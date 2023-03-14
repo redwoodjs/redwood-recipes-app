@@ -25,9 +25,24 @@ const rwjsPaths = getPaths()
 async function createServer() {
   const app = express()
 
+  /** Example
+   *
+   *  "/simple": {
+    "name": "simple",
+    "bundle": "assets/SimplePage-d4142a30.js",
+    "matchRegexString": "^/simple$",
+    "routePath": "/simple",
+    "routeHooks": null
+  }
+   *
+  */
+
   interface RWRouteManifest {
     matchRegexString: string
-    routeHooks: string | undefined
+    routeHooks: string | null
+    bundle: string
+    routePath: string
+    name: string
   }
 
   interface ViteManifestItem {
@@ -90,7 +105,7 @@ async function createServer() {
       )
 
       // Doesn't match any of the defined Routes
-      // So pass it on to the static asset handler
+      // So pass it on to the 404 handler
       if (!currentRoute) {
         return next()
       }
@@ -131,7 +146,7 @@ async function createServer() {
           )} }`,
           // @NOTE have to add slash so subpaths still pick up the right file
           // @TODO, also add the bundles from routeManifest
-          bootstrapModules: ['/' + indexEntry.file],
+          bootstrapModules: ['/' + indexEntry.file, '/' + currentRoute.bundle],
           onShellReady() {
             res.setHeader('content-type', 'text/html')
             pipe(res)
@@ -139,19 +154,12 @@ async function createServer() {
         }
       )
     } catch (e) {
-      // send back a SPA page
+      // send back a SPA page if we want, but streaming no longer requires this
+      // React will automatically switch
       // res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
-
-      // If an error is caught, let Vite fix the stack trace so it maps back to
-      // your actual source code.
       next(e)
     }
   })
-
-  // @TODO @FIXME we are intercepting all requests in the handler above
-  // So static assets aren't being served.....
-  // Serve the static assets
-  // app.use(express.static(rwjsPaths.web.dist))
 
   app.listen(9173)
   console.log('Started server on 9173')
