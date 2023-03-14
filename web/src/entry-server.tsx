@@ -23,7 +23,6 @@ export const serverEntry = ({ routeContext, url, css, meta }) => {
         location={{
           pathname: url,
         }}
-        mode="sync"
       >
         <Document css={css} meta={meta}>
           <App />
