@@ -24,10 +24,8 @@ const viteConfig: UserConfig = {
   optimizeDeps: {
     force: true,
   },
-  ssr: {
-    noExternal: [
-      '/Users/dac09/Projects/nodeconf-rw-recipe/web/src/pages/LoginPage/LoginPage.routeHooks.ts',
-    ],
+  legacy: {
+    buildSsrCjsExternalHeuristics: true,
   },
 }
 

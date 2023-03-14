@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 import { hydrateRoot, createRoot } from 'react-dom/client'
 
 import App from './App'
+import { Document } from './Document'
 import { ServerContextProvider } from './entry-server'
 /**
  * When `#redwood-app` isn't empty then it's very likely that you're using
@@ -19,7 +20,9 @@ if (redwoodAppElement.children?.length > 0) {
   hydrateRoot(
     document,
     <ServerContextProvider value={window.__loadServerData?.()}>
-      <App />
+      <Document css={window.__assetMap?.().css}>
+        <App />
+      </Document>
     </ServerContextProvider>
   )
 } else {

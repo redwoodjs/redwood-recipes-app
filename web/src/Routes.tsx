@@ -20,7 +20,7 @@ const Routes = () => {
       <Set whileLoadingPage={() => <h1>WHILE LOADING PAGE! 🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴</h1>}>
         <Route path="/simple" name="simple" page={SimplePage} />
         <Private unauthenticated="login">
-          <Route path="/my-recipes" name="myRecipes" redirect="/" />
+          <Route path="/my-recipes" name="myRecipes" page={MyRecipesPage} />
           <Set wrap={CategoriesLayout}>
             <Route path="/admin/categories/new" page={AdminCategoryNewCategoryPage} name="adminNewCategory" />
             <Route path="/admin/categories/{id}/edit" page={AdminCategoryEditCategoryPage} name="adminEditCategory" />
