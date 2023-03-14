@@ -6,6 +6,7 @@ import express from 'express'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import { renderToPipeableStream } from 'react-dom/server'
 
+// @MARK CAREFUL! This is an internal import
 import { getPaths } from '@redwoodjs/internal/dist/paths'
 
 globalThis.RWJS_ENV = {}
@@ -68,9 +69,13 @@ async function createServer() {
     return manifestItem.isEntry
   }) as ViteManifestItem
 
+  // 👉 1. Use static handler for assets
+  // For CF workers, we'd need an equivalent of this
+  app.use('/assets', express.static(rwjsPaths.web.dist + '/assets'))
+
+  // 👉 2. Proxy the api server
   // @TODO Use getConfig() to configure it
   // Also be careful of differences between v2 and v3 of the server
-  // Proxy the api server
   app.use(
     '/.redwood/functions',
     // @WARN! Be careful, between v2 and v3 of http-proxy-middleware
@@ -84,12 +89,15 @@ async function createServer() {
     })
   )
 
-  app.use('/assets', express.static(rwjsPaths.web.dist + '/assets'))
-
+  // 👉 3. Handle all other requests with the server entry
+  // This is where we match the url to the correct route, and render it
+  // We also call the relevant routeHooks here
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl
 
     try {
+      // @TODO should we generate individual express Routes for each Route?
+      // This would make handling 404s and favicons / public assets etc. easier
       const currentRoute = Object.values(routeManifest).find(
         (route: RWRouteManifest) => {
           if (!route.matchRegexString) {
@@ -126,9 +134,6 @@ async function createServer() {
         }
       }
 
-      // 3. Load the server entry. vite.ssrLoadModule automatically transforms
-      //    your ESM source code to be usable in Node.js! There is no bundling
-      //    required, and provides efficient invalidation similar to HMR.
       const { serverEntry } = await import(
         rwjsPaths.web.dist + '/server/entry-server.js'
       )
@@ -154,9 +159,8 @@ async function createServer() {
         }
       )
     } catch (e) {
-      // send back a SPA page if we want, but streaming no longer requires this
-      // React will automatically switch
-      // res.status(200).set({ 'Content-Type': 'text/html' }).end(template)
+      // streaming no longer requires us to send back a blank page
+      // React will automatically switch to client rendering on error
       next(e)
     }
   })

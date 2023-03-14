@@ -92,7 +92,7 @@ const feServerBuild = async () => {
     outdir: path.join(getPaths().web.dist, '/server/routeHooks'),
   })
 
-  // Step 3: Generate route-manifest.js
+  // Step 3: Generate route-manifest.json
   const clientBuildManifest: PageManifest = await import(
     path.join(getPaths().web.dist, 'build-manifest.json')
   )

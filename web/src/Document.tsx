@@ -5,7 +5,7 @@ interface DocumentProps {
   css: string[] // array of css import strings
   meta?: string[]
 }
-export const Document = ({ children, css }: DocumentProps) => {
+export const Document = ({ children, css = [] }: DocumentProps) => {
   return (
     <html lang="en">
       <head>
