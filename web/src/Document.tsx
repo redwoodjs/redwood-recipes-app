@@ -17,7 +17,9 @@ export const Document = ({ children, css = [] }: DocumentProps) => {
           )
         })}
       </head>
-      <body>{children}</body>
+      <body>
+        <div id="redwood-app">{children}</div>
+      </body>
     </html>
   )
 }

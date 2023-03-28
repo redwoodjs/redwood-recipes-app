@@ -14,17 +14,15 @@ import './index.css'
 
 const App = () => {
   return (
-    <div id="redwood-app">
-      <FatalErrorBoundary page={FatalErrorPage}>
-        <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-          <AuthProvider>
-            <RedwoodApolloProvider useAuth={useAuth}>
-              <Routes />
-            </RedwoodApolloProvider>
-          </AuthProvider>
-        </RedwoodProvider>
-      </FatalErrorBoundary>
-    </div>
+    <FatalErrorBoundary page={FatalErrorPage}>
+      <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
+        <AuthProvider>
+          <RedwoodApolloProvider useAuth={useAuth}>
+            <Routes />
+          </RedwoodApolloProvider>
+        </AuthProvider>
+      </RedwoodProvider>
+    </FatalErrorBoundary>
   )
 }
 

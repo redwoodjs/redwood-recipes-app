@@ -1,7 +1,5 @@
 /// <reference types="vite/client" />
 
-import { Suspense } from 'react'
-
 import { hydrateRoot, createRoot } from 'react-dom/client'
 
 import App from './App'
@@ -28,5 +26,9 @@ if (redwoodAppElement.children?.length > 0) {
 } else {
   console.log('Rendering from scratch 🇦🇼🇦🇼')
   const root = createRoot(document)
-  root.render(<App />)
+  root.render(
+    <Document css={window.__assetMap?.().css}>
+      <App />
+    </Document>
+  )
 }
