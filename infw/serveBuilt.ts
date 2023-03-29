@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 import path from 'path'
 
 import { config } from 'dotenv-defaults'
@@ -6,8 +5,7 @@ import express from 'express'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import { renderToPipeableStream } from 'react-dom/server'
 
-// @MARK CAREFUL! This is an internal import
-import { getPaths } from '@redwoodjs/internal/dist/paths'
+import { getPaths } from '@redwoodjs/project-config'
 
 globalThis.RWJS_ENV = {}
 
@@ -85,7 +83,7 @@ async function createServer() {
       pathRewrite: {
         [`^/.redwood/functions`]: '', // remove base path
       },
-      target: 'http://localhost:8911',
+      target: 'http://localhost:8911', // @TODO read port from config
     })
   )
 

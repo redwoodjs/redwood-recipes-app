@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 import path from 'path'
 
 import { config } from 'dotenv-defaults'
@@ -6,8 +5,8 @@ import express from 'express'
 import { renderToPipeableStream } from 'react-dom/server'
 import { createServer as createViteServer } from 'vite'
 
-import { getPaths } from '@redwoodjs/internal/dist/paths.js'
-import type { VirtualRoute } from '@redwoodjs/vite'
+import { getProjectRoutes } from '@redwoodjs/internal/dist/routes'
+import { getPaths } from '@redwoodjs/project-config'
 
 globalThis.RWJS_ENV = {}
 
@@ -45,9 +44,11 @@ async function createServer() {
       // @MARK: using virtual modules here, so we can actually find the chunk we need! 🤯
       // I'm not convinved we need virtual modules anymore..... or we'd need to rollup the logic in serveBuilt
       // into a function in internal, and generate the virtual module using it
-      const { default: routes } = (await vite.ssrLoadModule(
-        'virtual:rw-routes'
-      )) as { default: VirtualRoute[] }
+      // const { default: routes } = (await vite.ssrLoadModule(
+      //   'virtual:rw-routes'
+      // )) as { default: VirtualRoute[] }
+
+      const routes = getProjectRoutes()
 
       const currentRoute = routes.find((route) => {
         if (!route.matchRegexString) {
@@ -65,6 +66,8 @@ async function createServer() {
       if (currentRoute && currentRoute.routeHooks) {
         try {
           const routeHooks = await vite.ssrLoadModule(currentRoute.routeHooks)
+
+          // @TODO decide what the shape of parameters passed to serverData should be
           const serverData = await routeHooks.serverData(req)
 
           routeContext = {
@@ -79,12 +82,10 @@ async function createServer() {
         // @TODO do something
       }
 
-      console.log(`👉 \n ~ file: devMe.ts:66 ~ currentRoute:`, currentRoute)
-
       // 3. Load the server entry. vite.ssrLoadModule automatically transforms
       //    your ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
-      const { serverEntry } = await vite.ssrLoadModule('web/src/entry-server')
+      const { serverEntry } = await vite.ssrLoadModule('web/src/entry-server') //@TODO hardcoded
 
       // Serialize route context so it can be passed to the client entry
       const serialisedRouteContext = JSON.stringify(routeContext)
@@ -95,8 +96,8 @@ async function createServer() {
         {
           bootstrapScriptContent: `window.__loadServerData = function() { return ${serialisedRouteContext} }`,
           bootstrapModules: [
-            '/bootstrapScript.js', // Bootstrap is Vite react HMR stuff
-            '/entry-client.jsx',
+            '/bootstrapScript.js', // Bootstrap is Vite react HMR stuff @TODO put this script inside node_modules maybe?
+            '/entry-client.jsx', // @TODO hardcoded
           ],
           onAllReady() {
             res.setHeader('content-type', 'text/html')
@@ -110,7 +111,10 @@ async function createServer() {
 
       // If an error is caught, let Vite fix the stack trace so it maps back to
       // your actual source code.
-      vite.ssrFixStacktrace(e as any)
+      if (e instanceof Error) {
+        vite.ssrFixStacktrace(e)
+      }
+
       next(e)
     }
   })

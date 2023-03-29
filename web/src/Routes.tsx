@@ -10,6 +10,7 @@
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import CategoriesLayout from 'src/layouts/Admin/CategoriesLayout'
+import KrisLayout from 'src/layouts/KrisLayout'
 // import SimplePage from 'src/pages/SimplePage'
 
 import { useAuth } from './auth'
@@ -17,17 +18,17 @@ import { useAuth } from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <Set whileLoadingPage={() => <h1>WHILE LOADING PAGE! 🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴</h1>}>
-        <Route path="/simple" name="simple" page={SimplePage} />
-        <Private unauthenticated="login">
-          <Route path="/my-recipes" name="myRecipes" page={MyRecipesPage} />
-          <Set wrap={CategoriesLayout}>
-            <Route path="/admin/categories/new" page={AdminCategoryNewCategoryPage} name="adminNewCategory" />
-            <Route path="/admin/categories/{id}/edit" page={AdminCategoryEditCategoryPage} name="adminEditCategory" />
-            <Route path="/admin/categories/{id}" page={AdminCategoryCategoryPage} name="adminCategory" />
-            <Route path="/admin/categories" page={AdminCategoryCategoriesPage} name="adminCategories" />
-          </Set>
-        </Private>
+      <Route path="/simple" name="simple" page={SimplePage} />
+      <Private unauthenticated="login">
+        <Route path="/my-recipes" name="myRecipes" page={MyRecipesPage} />
+        <Set wrap={CategoriesLayout}>
+          <Route path="/admin/categories/new" page={AdminCategoryNewCategoryPage} name="adminNewCategory" />
+          <Route path="/admin/categories/{id}/edit" page={AdminCategoryEditCategoryPage} name="adminEditCategory" />
+          <Route path="/admin/categories/{id}" page={AdminCategoryCategoryPage} name="adminCategory" />
+          <Route path="/admin/categories" page={AdminCategoryCategoriesPage} name="adminCategories" />
+        </Set>
+      </Private>
+      <Set whileLoadingPage={() => <h1>WHILE LOADING PAGE! 🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴🟢 🔴</h1>} wrap={[KrisLayout]}>
         <Route path="/login" page={LoginPage} name="login" />
         <Route path="/signup" page={SignupPage} name="signup" />
         <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />

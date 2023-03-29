@@ -57,8 +57,8 @@ const feServerBuild = async () => {
     name: 'rw-esbuild-babel-transform',
     setup(build: PluginBuild) {
       build.onLoad({ filter: /\.(js|ts|tsx|jsx)$/ }, async (args) => {
-        //  Remove RedwoodJS "magic" from a user's code leaving JavaScript behind.
-        // @TODO: We need to the new transformWithBabel function in https://github.com/redwoodjs/redwood/pull/7672/files
+        // Remove RedwoodJS "magic" from a user's code leaving JavaScript behind.
+        // @TODO: We need the new transformWithBabel function in https://github.com/redwoodjs/redwood/pull/7672/files
         const transformedCode = prebuildApiFile(
           args.path,
           args.path,
