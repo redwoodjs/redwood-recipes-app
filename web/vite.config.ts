@@ -21,12 +21,6 @@ const viteConfig: UserConfig = {
     //   outputDir: '../../inspector',
     // }),
   ],
-  optimizeDeps: {
-    force: true,
-  },
-  legacy: {
-    buildSsrCjsExternalHeuristics: true,
-  },
 }
 
 export default defineConfig(viteConfig)
