@@ -31,6 +31,12 @@ const LandingPage = () => {
       <MetaTags title="Landing" description="Landing page" />
       <HeroHeader />
 
+      <ul>
+        <li>
+          <Link to={routes.simple()}>Click to go to Simple</Link>
+        </li>
+      </ul>
+
       <section className="my-5 flex w-full justify-center md:px-10 lg:px-24">
         <CategoriesCell onCategorySelected={toggleCategory} />
       </section>
