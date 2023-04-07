@@ -4,7 +4,7 @@ import { hydrateRoot, createRoot } from 'react-dom/client'
 
 import App from './App'
 import { Document } from './Document'
-import { ServerContextProvider } from './entry-server'
+import { ServerContextProvider } from "./ServerContextProvider"
 /**
  * When `#redwood-app` isn't empty then it's very likely that you're using
  * prerendering. So React attaches event listeners to the existing markup
@@ -14,7 +14,6 @@ import { ServerContextProvider } from './entry-server'
 const redwoodAppElement = document.getElementById('redwood-app')
 
 if (redwoodAppElement.children?.length > 0) {
-  console.log('definitely hydrating 🇨🇭🇨🇭🇨🇭🇨🇭')
   hydrateRoot(
     document,
     <ServerContextProvider value={window.__loadServerData?.()}>

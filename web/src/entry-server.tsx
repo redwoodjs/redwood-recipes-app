@@ -1,20 +1,8 @@
-import React from 'react'
-
 import { LocationProvider } from '@redwoodjs/router'
+import { ServerContextProvider } from '@redwoodjs/web'
 
 import App from './App'
 import { Document } from './Document'
-
-const ServerContext = React.createContext({})
-
-export const {
-  Provider: ServerContextProvider,
-  Consumer: ServerContextConsumer,
-} = ServerContext
-
-export const useServerData = () => {
-  return React.useContext(ServerContext)
-}
 
 export const serverEntry = ({ routeContext, url, css, meta }) => {
   return (

@@ -1,21 +1,21 @@
 import React from 'react'
 
+import { Css, Meta } from '@redwoodjs/web'
+import type { TagDescriptor } from '@redwoodjs/web'
+
 interface DocumentProps {
   children: React.ReactNode
   css: string[] // array of css import strings
-  meta?: string[]
+  meta?: TagDescriptor[]
 }
-export const Document = ({ children, css = [] }: DocumentProps) => {
+export const Document = ({ children, css, meta }: DocumentProps) => {
   return (
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/png" href="/favicon.png" />
-        {css.map((cssLinks, index) => {
-          return (
-            <link rel="stylesheet" key={`css-${index}`} href={`/${cssLinks}`} />
-          )
-        })}
+        <Css css={css} />
+        <Meta tags={meta} />
       </head>
       <body>
         <div id="redwood-app">{children}</div>

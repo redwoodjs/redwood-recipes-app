@@ -7,8 +7,8 @@ import CategoriesCell from 'src/components/CategoriesCell'
 import HeroHeader from 'src/components/HeroHeader'
 import RecipeCard from 'src/components/RecipeCard'
 import RecipesCell from 'src/components/RecipesCell'
-import { useServerData } from 'src/entry-server'
 import NavLayout from 'src/layouts/NavLayout'
+import { useServerData } from 'src/ServerContextProvider'
 // import { CustomFormComponent, Form } from 'src/lib/Forms'
 
 const LandingPage = () => {
@@ -28,7 +28,7 @@ const LandingPage = () => {
   return (
     <NavLayout>
       {/* <Form></Form> */}
-      <MetaTags title="Landing" description="Landing page" />
+      {/* <MetaTags title="Landing" description="Landing page" /> */}
       <HeroHeader />
 
       <ul>
