@@ -1,11 +1,10 @@
+import { requireAuth as applicationRequireAuth } from 'api/src/lib/auth'
 import gql from 'graphql-tag'
 
 import {
   createValidatorDirective,
   ValidatorDirectiveFunc,
 } from '@redwoodjs/graphql-server'
-
-import { requireAuth as applicationRequireAuth } from 'src/lib/auth'
 
 export const schema = gql`
   """

@@ -1,14 +1,12 @@
+import directives from 'api/src/directives/**/*.{js,ts}'
+import sdls from 'api/src/graphql/**/*.sdl.{js,ts}'
+import { getCurrentUser } from 'api/src/lib/auth'
+import { db } from 'api/src/lib/db'
+import { logger } from 'api/src/lib/logger'
+import services from 'api/src/services/**/*.{js,ts}'
+
 import { authDecoder } from '@redwoodjs/auth-dbauth-api'
 import { createGraphQLHandler } from '@redwoodjs/graphql-server'
-
-import directives from 'src/directives/**/*.{js,ts}'
-import sdls from 'src/graphql/**/*.sdl.{js,ts}'
-import services from 'src/services/**/*.{js,ts}'
-
-import { getCurrentUser } from 'src/lib/auth'
-
-import { db } from 'src/lib/db'
-import { logger } from 'src/lib/logger'
 
 export const handler = createGraphQLHandler({
   getCurrentUser,

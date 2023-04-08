@@ -1,10 +1,9 @@
+import { db } from 'api/src/lib/db'
 import type {
   QueryResolvers,
   MutationResolvers,
   RecipeRelationResolvers,
 } from 'types/graphql'
-
-import { db } from 'src/lib/db'
 
 export const recipes: QueryResolvers['recipes'] = ({
   category,

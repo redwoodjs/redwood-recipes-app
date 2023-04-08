@@ -2,9 +2,10 @@
 
 import { hydrateRoot, createRoot } from 'react-dom/client'
 
+import { ServerContextProvider } from '@redwoodjs/web'
+
 import App from './App'
 import { Document } from './Document'
-import { ServerContextProvider } from "./ServerContextProvider"
 /**
  * When `#redwood-app` isn't empty then it's very likely that you're using
  * prerendering. So React attaches event listeners to the existing markup

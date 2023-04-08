@@ -1,14 +1,13 @@
 import { useState } from 'react'
 
 import { Link, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
+import { useServerData } from '@redwoodjs/web'
 
 import CategoriesCell from 'src/components/CategoriesCell'
 import HeroHeader from 'src/components/HeroHeader'
 import RecipeCard from 'src/components/RecipeCard'
 import RecipesCell from 'src/components/RecipesCell'
 import NavLayout from 'src/layouts/NavLayout'
-import { useServerData } from 'src/ServerContextProvider'
 // import { CustomFormComponent, Form } from 'src/lib/Forms'
 
 const LandingPage = () => {
@@ -21,6 +20,7 @@ const LandingPage = () => {
   }
 
   const data = useServerData()
+  console.log(`👉 \n ~ file: LandingPage.tsx:24 ~ data:`, data)
   // console.log(`👉 \n ~ file: LandingPage.tsx:23 ~ data:`, data)
 
   const [selectedCategory, setSelectedCategory] = useState<string>(null)
@@ -42,11 +42,11 @@ const LandingPage = () => {
       </section>
 
       <section className="my-4 mb-20 grid grid-cols-1 gap-8 md:grid-cols-2 md:px-7 lg:grid-cols-3">
-        <RecipesCell category={selectedCategory} />
-        {/*
+        {/* <RecipesCell category={selectedCategory} /> */}
+
         {data.recipes.map((item) => {
           return <RecipeCard recipe={item} key={item.id} />
-        })} */}
+        })}
       </section>
     </NavLayout>
   )

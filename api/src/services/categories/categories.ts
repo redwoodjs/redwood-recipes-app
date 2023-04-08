@@ -1,10 +1,9 @@
+import { db } from 'api/src/lib/db'
 import type {
   QueryResolvers,
   MutationResolvers,
   CategoryRelationResolvers,
 } from 'types/graphql'
-
-import { db } from 'src/lib/db'
 
 export const categories: QueryResolvers['categories'] = () => {
   return db.category.findMany()
