@@ -2,7 +2,8 @@
 
 import { hydrateRoot, createRoot } from 'react-dom/client'
 
-import { ServerContextProvider } from '@redwoodjs/web'
+// @NOTE: temporary workaround
+import { ServerContextProvider } from '@redwoodjs/web/dist/serverContext'
 
 import App from './App'
 import { Document } from './Document'

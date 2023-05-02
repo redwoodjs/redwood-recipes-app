@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Link, routes } from '@redwoodjs/router'
-import { useServerData } from '@redwoodjs/web'
+import { useServerData } from '@redwoodjs/web/dist/serverContext'
 
 import CategoriesCell from 'src/components/CategoriesCell'
 import HeroHeader from 'src/components/HeroHeader'

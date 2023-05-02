@@ -13,12 +13,12 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/auth": "0.0.0-experimental-streaming.4",
-    "@redwoodjs/auth-dbauth-web": "0.0.0-experimental-streaming.4",
-    "@redwoodjs/forms": "0.0.0-experimental-streaming.4",
-    "@redwoodjs/router": "0.0.0-experimental-streaming.4",
-    "@redwoodjs/vite": "0.0.0-experimental-streaming.4",
-    "@redwoodjs/web": "0.0.0-experimental-streaming.4",
+    "@redwoodjs/auth": "0.0.0-experimental-streaming.7",
+    "@redwoodjs/auth-dbauth-web": "0.0.0-experimental-streaming.7",
+    "@redwoodjs/forms": "0.0.0-experimental-streaming.7",
+    "@redwoodjs/router": "0.0.0-experimental-streaming.7",
+    "@redwoodjs/vite": "0.0.0-experimental-streaming.7",
+    "@redwoodjs/web": "0.0.0-experimental-streaming.7",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
