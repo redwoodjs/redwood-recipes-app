@@ -12,7 +12,7 @@ const NavLayout = ({ children }: NavLayoutProps) => {
   const { isAuthenticated, logOut } = useAuth()
 
   const navigation = [
-    { name: 'About', to: '#' },
+    { name: 'About', to: routes.about() },
     { name: 'Your Recipes', to: routes.myRecipes() },
   ]
 

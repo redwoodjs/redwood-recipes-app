@@ -17,11 +17,6 @@ export const serverData: ServerDataHook = async () => {
 }
 
 export const meta: MetaHook = async ({ serverData }) => {
-  console.log(
-    `👉 \n ~ file: LandingPage.routeHooks.ts:17 ~ serverData:`,
-    serverData
-  )
-
   return [
     {
       title: 'Bazinga',
