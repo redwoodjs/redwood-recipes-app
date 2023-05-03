@@ -8,8 +8,8 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/auth-dbauth-setup": "0.0.0-experimental-streaming.7",
-    "@redwoodjs/core": "0.0.0-experimental-streaming.7",
+    "@redwoodjs/auth-dbauth-setup": "0.0.0-experimental-streaming.8",
+    "@redwoodjs/core": "0.0.0-experimental-streaming.8",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "vite-plugin-inspect": "^0.7.15"
   },

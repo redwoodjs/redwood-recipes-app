@@ -16,6 +16,7 @@ import { useAuth } from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/about" page={AboutPage} name="about" renderMode="html" />
       <Route path="/simple" redirect="/redirectedSimple" name="simple" />
       <Route path="/redirectedSimple" name="redirectedSimple" page={() => <h1>Redirected page</h1>} />
       <Private unauthenticated="login">

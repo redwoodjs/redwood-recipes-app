@@ -1,5 +1,3 @@
-import { MetaTags } from '@redwoodjs/web'
-
 import RecipeCell from 'src/components/RecipeCell'
 import SaveToMyRecipesButton from 'src/components/SaveToMyRecipesButton/SaveToMyRecipesButton'
 import HeaderLayout from 'src/layouts/HeaderLayout'
@@ -13,9 +11,7 @@ const RecipePage = ({ id }: RecipePageProps) => {
   return (
     <NavLayout>
       <HeaderLayout>
-        <MetaTags title="Recipe" description="Recipe page" />
         <div className="mt-5 w-7/12"></div>
-
         <div className="my-10">
           {/* Button makes mutation on click! */}
           <SaveToMyRecipesButton id={id} />

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-import { Link, routes } from '@redwoodjs/router'
+import type { Recipe } from '@prisma/client'
+
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useServerData } from '@redwoodjs/web/dist/serverContext'
 
 import CategoriesCell from 'src/components/CategoriesCell'
@@ -8,6 +10,7 @@ import HeroHeader from 'src/components/HeroHeader'
 import RecipeCard from 'src/components/RecipeCard'
 import RecipesCell from 'src/components/RecipesCell'
 import NavLayout from 'src/layouts/NavLayout'
+
 // import { CustomFormComponent, Form } from 'src/lib/Forms'
 
 const LandingPage = () => {
@@ -19,12 +22,14 @@ const LandingPage = () => {
     }
   }
 
-  const data = useServerData()
-  console.log(`👉 \n ~ file: LandingPage.tsx:24 ~ data:`, data)
+  const data = useServerData<{ recipes: Recipe[] }>()
   // console.log(`👉 \n ~ file: LandingPage.tsx:23 ~ data:`, data)
 
   const [selectedCategory, setSelectedCategory] = useState<string>(null)
 
+  const navigateToRecipe = (id: string) => {
+    navigate(routes.recipe({ id }))
+  }
   return (
     <NavLayout>
       {/* <Form></Form> */}
@@ -45,7 +50,13 @@ const LandingPage = () => {
         {/* <RecipesCell category={selectedCategory} /> */}
 
         {data.recipes.map((item) => {
-          return <RecipeCard recipe={item} key={item.id} />
+          return (
+            <RecipeCard
+              recipe={item}
+              key={item.id}
+              onClick={navigateToRecipe}
+            />
+          )
         })}
       </section>
     </NavLayout>
