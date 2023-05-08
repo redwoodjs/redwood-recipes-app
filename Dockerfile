@@ -34,7 +34,7 @@ RUN yarn rw build api
 
 FROM dependencies
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 COPY --from=web_build /app/web/dist /app/web/dist
 COPY --from=api_build /app/api /app/api
