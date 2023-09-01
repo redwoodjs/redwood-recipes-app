@@ -1,3 +1,5 @@
+import { setTimeout } from 'node:timers/promises'
+
 import type {
   QueryResolvers,
   MutationResolvers,
@@ -6,10 +8,11 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const recipes: QueryResolvers['recipes'] = ({
+export const recipes: QueryResolvers['recipes'] = async ({
   category,
   forUser,
 } = {}) => {
+  await setTimeout(3000)
   const categoryFilter = category && { category: { id: category } }
   const userFilter = forUser && {
     users: {

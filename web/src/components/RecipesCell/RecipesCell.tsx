@@ -45,3 +45,10 @@ export const Success = ({ recipes }: RecipesCellProps) => {
     </>
   )
 }
+
+export const beforeQuery = (v) => {
+  return {
+    variables: v,
+    fetchPolicy: 'no-cache',
+  }
+}

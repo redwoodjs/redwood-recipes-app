@@ -89,6 +89,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/experimental-nextjs-app-support@npm:0.0.0-commit-5141fa5":
+  version: 0.0.0-commit-5141fa5
+  resolution: "@apollo/experimental-nextjs-app-support@npm:0.0.0-commit-5141fa5"
+  dependencies:
+    superjson: ^1.12.2
+    ts-invariant: ^0.10.3
+  peerDependencies:
+    "@apollo/client": ">=3.8.0-rc || ^3.8.0"
+    next: ^13.4.1
+    react: ^18
+  checksum: 29a068b57d0e6464c9bf0703a7d4a458188a40a32126176a2819a9c167f61faf10a5c57767bf5a007c0a51a8c3c234f6908146faed2c4332ba87c37d945765e5
+  languageName: node
+  linkType: hard
+
 "@apollo/protobufjs@npm:1.2.7":
   version: 1.2.7
   resolution: "@apollo/protobufjs@npm:1.2.7"
@@ -9281,6 +9295,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"copy-anything@npm:^3.0.2":
+  version: 3.0.5
+  resolution: "copy-anything@npm:3.0.5"
+  dependencies:
+    is-what: ^4.1.8
+  checksum: 01eadd500c7e1db71d32d95a3bfaaedcb839ef891c741f6305ab0461398056133de08f2d1bf4c392b364e7bdb7ce498513896e137a7a183ac2516b065c28a4fe
+  languageName: node
+  linkType: hard
+
 "copy-concurrently@npm:^1.0.0":
   version: 1.0.5
   resolution: "copy-concurrently@npm:1.0.5"
@@ -13808,6 +13831,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-what@npm:^4.1.8":
+  version: 4.1.15
+  resolution: "is-what@npm:4.1.15"
+  checksum: 7d9bab85977d8352684a7b046cfee8d68e23029f0d6d5b4b7f366cf6c83dee39903e412b655ebf155dc9706d4d1bce02f6351f75a1426381961b4155394082db
+  languageName: node
+  linkType: hard
+
 "is-windows@npm:1.0.2, is-windows@npm:^1.0.1, is-windows@npm:^1.0.2":
   version: 1.0.2
   resolution: "is-windows@npm:1.0.2"
@@ -18296,15 +18326,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
+"react-dom@npm:18.3.0-canary-035a41c4e-20230704":
+  version: 18.3.0-canary-035a41c4e-20230704
+  resolution: "react-dom@npm:18.3.0-canary-035a41c4e-20230704"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: ^0.23.0
+    scheduler: 0.24.0-canary-035a41c4e-20230704
   peerDependencies:
-    react: ^18.2.0
-  checksum: 66dfc5f93e13d0674e78ef41f92ed21dfb80f9c4ac4ac25a4b51046d41d4d2186abc915b897f69d3d0ebbffe6184e7c5876f2af26bfa956f179225d921be713a
+    react: 18.3.0-canary-035a41c4e-20230704
+  checksum: 5fbc98baf3e9a9ac52a8160f5e4b5c90c6d339dfcc296b9d02e3df8d06d5b4938d825b6f660d401bfd6449ba9a70bbfc2f498b707621cdd4369f2faf2e7faff9
   languageName: node
   linkType: hard
 
@@ -18418,15 +18448,6 @@ __metadata:
     react-dom: 18.3.0-canary-035a41c4e-20230704
     webpack: ^5.59.0
   checksum: 3da1c83e3fe647798c690ac40ec4f5fb58d0f8660e6480bb4bdcc5204f3fc94e3298b117286cb93514a5a66ebdc749c6c684cbd6eecb60cb5677631afa2a97e2
-  languageName: node
-  linkType: hard
-
-"react@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: b562d9b569b0cb315e44b48099f7712283d93df36b19a39a67c254c6686479d3980b7f013dc931f4a5a3ae7645eae6386b4aa5eea933baa54ecd0f9acb0902b8
   languageName: node
   linkType: hard
 
@@ -19180,12 +19201,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "scheduler@npm:0.23.0"
+"scheduler@npm:0.24.0-canary-035a41c4e-20230704":
+  version: 0.24.0-canary-035a41c4e-20230704
+  resolution: "scheduler@npm:0.24.0-canary-035a41c4e-20230704"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: b777f7ca0115e6d93e126ac490dbd82642d14983b3079f58f35519d992fa46260be7d6e6cede433a92db70306310c6f5f06e144f0e40c484199e09c1f7be53dd
+  checksum: aaaf1b219c01bc5dc579362a5486f3d28092407f711748bd8ed7cd57f1431ca07f8469c6e9b7c8c70c21ef6d40faf2c575fd3564dffac55a13443db08991282c
   languageName: node
   linkType: hard
 
@@ -20251,6 +20272,15 @@ __metadata:
   peerDependencies:
     postcss: ^8.2.15
   checksum: 6ce277c816dd826fdc765258d612a160bad03dae52ab51ef1676efae07e96923ebeb6880d6522eefc50d2e81cb90b632615120c73aed190f345e8d836def67b6
+  languageName: node
+  linkType: hard
+
+"superjson@npm:^1.12.2":
+  version: 1.13.1
+  resolution: "superjson@npm:1.13.1"
+  dependencies:
+    copy-anything: ^3.0.2
+  checksum: 596edde148df1f05f09236b0715ad97bcf803514e65a271d4f945557e35652b838e65c96520946b7ee7a62cb96f26a565749dc14897de2bcf9ac12371f1a4f8c
   languageName: node
   linkType: hard
 
@@ -21805,6 +21835,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
+    "@apollo/experimental-nextjs-app-support": 0.0.0-commit-5141fa5
     "@redwoodjs/auth": ^7.0.0-canary.268
     "@redwoodjs/auth-dbauth-web": 7.0.0-canary.268+f3c942219
     "@redwoodjs/forms": ^7.0.0-canary.268
@@ -21816,8 +21847,8 @@ __metadata:
     postcss: ^8.4.16
     postcss-loader: ^7.0.1
     prop-types: 15.8.1
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0-canary-035a41c4e-20230704
+    react-dom: 18.3.0-canary-035a41c4e-20230704
     react-markdown: ^8.0.3
     tailwindcss: ^3.1.8
   languageName: unknown
