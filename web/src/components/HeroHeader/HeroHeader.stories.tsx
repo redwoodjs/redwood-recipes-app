@@ -11,15 +11,15 @@
 //
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
-import type { ComponentMeta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
 import HeroHeader from './HeroHeader'
 
 export const generated = () => {
-  return <HeroHeader />
+	return <HeroHeader />
 }
 
 export default {
-  title: 'Components/HeroHeader',
-  component: HeroHeader,
-} as ComponentMeta<typeof HeroHeader>
+	title: 'Components/HeroHeader',
+	component: HeroHeader,
+} as Meta<typeof HeroHeader>

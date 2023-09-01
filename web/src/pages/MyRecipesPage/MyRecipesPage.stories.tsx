@@ -1,12 +1,12 @@
-import type { ComponentMeta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
 import MyRecipesPage from './MyRecipesPage'
 
 export const generated = () => {
-  return <MyRecipesPage />
+	return <MyRecipesPage />
 }
 
 export default {
-  title: 'Pages/MyRecipesPage',
-  component: MyRecipesPage,
-} as ComponentMeta<typeof MyRecipesPage>
+	title: 'Pages/MyRecipesPage',
+	component: MyRecipesPage,
+} as Meta<typeof MyRecipesPage>

@@ -1,7 +1,6 @@
 import type { APIGatewayProxyEvent, Context } from 'aws-lambda'
 
-import { DbAuthHandler } from '@redwoodjs/api'
-import type { DbAuthHandlerOptions } from '@redwoodjs/api'
+import { DbAuthHandler, DbAuthHandlerOptions } from '@redwoodjs/auth-dbauth-api'
 
 import { db } from 'src/lib/db'
 
@@ -9,7 +8,6 @@ export const handler = async (
   event: APIGatewayProxyEvent,
   context: Context
 ) => {
-
   const forgotPasswordOptions: DbAuthHandlerOptions['forgotPassword'] = {
     // handler() is invoked after verifying that a user was found with the given
     // username. This is where you can send the user an email with a link to
@@ -118,6 +116,13 @@ export const handler = async (
           // name: userAttributes.name
         },
       })
+    },
+
+    // Include any format checks for password here. Return `true` if the
+    // password is valid, otherwise throw a `PasswordValidationError`.
+    // Import the error along with `DbAuthHandler` from `@redwoodjs/api` above.
+    passwordValidation: (_password) => {
+      return true
     },
 
     errors: {

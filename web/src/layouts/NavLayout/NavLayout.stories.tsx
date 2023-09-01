@@ -1,12 +1,14 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import NavLayout from './NavLayout'
 
-export const generated: ComponentStory<typeof NavLayout> = (args) => {
-  return <NavLayout {...args} />
+export const generated: StoryObj<typeof NavLayout> = {
+	render: (args) => {
+		return <NavLayout {...args} />
+	},
 }
 
 export default {
-  title: 'Layouts/NavLayout',
-  component: NavLayout,
-} as ComponentMeta<typeof NavLayout>
+	title: 'Layouts/NavLayout',
+	component: NavLayout,
+} as Meta<typeof NavLayout>

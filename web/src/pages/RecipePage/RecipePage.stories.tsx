@@ -1,12 +1,14 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import RecipePage from './RecipePage'
 
-export const generated: ComponentStory<typeof RecipePage> = (args) => {
-  return <RecipePage id={'42'} {...args} />
+export const generated: StoryObj<typeof RecipePage> = {
+	render: (args) => {
+		return <RecipePage id={'42'} {...args} />
+	},
 }
 
 export default {
-  title: 'Pages/RecipePage',
-  component: RecipePage,
-} as ComponentMeta<typeof RecipePage>
+	title: 'Pages/RecipePage',
+	component: RecipePage,
+} as Meta<typeof RecipePage>

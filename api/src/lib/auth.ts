@@ -27,7 +27,7 @@ export const getCurrentUser = async (session: Decoded) => {
 
   return await db.user.findUnique({
     where: { id: session.id },
-    select: { id: true, roles: true },
+    select: { id: true },
   })
 }
 
@@ -65,15 +65,10 @@ export const hasRole = (roles: AllowedRoles): boolean => {
     if (typeof currentUserRoles === 'string') {
       // roles to check is a string, currentUser.roles is a string
       return currentUserRoles === roles
+    } else if (Array.isArray(currentUserRoles)) {
+      // roles to check is a string, currentUser.roles is an array
+      return currentUserRoles?.some((allowedRole) => roles === allowedRole)
     }
-
-    // This code block isn't necessary, because the Prisma model locks it to
-    // a primitive string only
-
-    // else if (Array.isArray(currentUserRoles)) {
-    //   // roles to check is a string, currentUser.roles is an array
-    //   return currentUserRoles?.some((allowedRole) => roles === allowedRole)
-    // }
   }
 
   if (Array.isArray(roles)) {

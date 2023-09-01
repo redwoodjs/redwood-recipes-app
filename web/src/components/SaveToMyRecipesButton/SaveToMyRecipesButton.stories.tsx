@@ -11,15 +11,15 @@
 //
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
-import type { ComponentMeta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
 import SaveToMyRecipesButton from './SaveToMyRecipesButton'
 
 export const generated = () => {
-  return <SaveToMyRecipesButton id="bazinga" />
+	return <SaveToMyRecipesButton id="bazinga" />
 }
 
 export default {
-  title: 'Components/SaveToMyRecipesButton',
-  component: SaveToMyRecipesButton,
-} as ComponentMeta<typeof SaveToMyRecipesButton>
+	title: 'Components/SaveToMyRecipesButton',
+	component: SaveToMyRecipesButton,
+} as Meta<typeof SaveToMyRecipesButton>
