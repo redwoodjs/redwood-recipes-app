@@ -14,7 +14,7 @@ export const recipes: QueryResolvers['recipes'] = ({
   const userFilter = forUser && {
     users: {
       some: {
-        id: context.currentUser.id,
+        id: context.currentUser?.id,
       },
     },
   }
