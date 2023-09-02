@@ -17,3 +17,10 @@
 
 [experimental.streamingSsr]
   enabled = true
+
+[experimental.studio]
+  enabled = true
+
+[experimental.opentelemetry]
+	enabled = true
+	apiSdk = "/Users/dac09/Projects/nodeconf-rw-recipe/api/src/opentelemetry.ts"

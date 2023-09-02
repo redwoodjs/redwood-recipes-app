@@ -3,8 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "^7.0.0-canary.268",
-    "@redwoodjs/auth-dbauth-api": "7.0.0-canary.268+f3c942219",
-    "@redwoodjs/graphql-server": "^7.0.0-canary.268"
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.41.2",
+    "@opentelemetry/instrumentation": "^0.41.2",
+    "@opentelemetry/instrumentation-fastify": "^0.32.2",
+    "@opentelemetry/instrumentation-http": "^0.41.2",
+    "@opentelemetry/resources": "^1.15.2",
+    "@opentelemetry/sdk-node": "^0.41.2",
+    "@opentelemetry/semantic-conventions": "^1.15.2",
+    "@prisma/instrumentation": "^5.2.0",
+    "@redwoodjs/api": "7.0.0-canary.280",
+    "@redwoodjs/auth-dbauth-api": "7.0.0-canary.280",
+    "@redwoodjs/graphql-server": "7.0.0-canary.280"
   }
 }

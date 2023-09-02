@@ -12,7 +12,7 @@ export const recipes: QueryResolvers['recipes'] = async ({
   category,
   forUser,
 } = {}) => {
-  await setTimeout(3000)
+  await setTimeout(1000)
   const categoryFilter = category && { category: { id: category } }
   const userFilter = forUser && {
     users: {
@@ -25,6 +25,7 @@ export const recipes: QueryResolvers['recipes'] = async ({
   const filters = {
     where: { AND: [categoryFilter, userFilter].filter(Boolean) },
   }
+  console.log(`👉 \n ~ file: recipes.ts:28 ~ filters:`, filters)
 
   return db.recipe.findMany(filters)
 }

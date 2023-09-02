@@ -8,13 +8,13 @@ type NavLayoutProps = {
   children?: React.ReactNode
 }
 
-const navigation = [
-  { name: 'About', to: '#' },
-  { name: 'Your Recipes', to: routes.myRecipes() },
-]
-
 const NavLayout = ({ children }: NavLayoutProps) => {
   const { isAuthenticated, logOut } = useAuth()
+
+  const navigation = [
+    { name: 'About', to: '#' },
+    { name: 'Your Recipes', to: routes.myRecipes() },
+  ]
 
   return (
     <>
