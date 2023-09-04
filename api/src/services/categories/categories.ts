@@ -6,7 +6,7 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const categories: QueryResolvers['categories'] = () => {
+export const categories: QueryResolvers['categories'] = async () => {
   return db.category.findMany()
 }
 

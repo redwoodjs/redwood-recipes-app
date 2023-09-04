@@ -2,6 +2,7 @@ import type { CategoriesQuery } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
+import CategoriesLoader from '../CategoriesLoader/CategoriesLoader'
 import CategoryBubble from '../CategoryBubble/CategoryBubble'
 import HorizontalScroller from '../HorizontalScroller/HorizontalScroller'
 
@@ -15,7 +16,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <CategoriesLoader count={3} />
 
 export const Empty = () => <div>Empty</div>
 
