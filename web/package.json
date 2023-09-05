@@ -13,18 +13,18 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/auth": "^7.0.0-canary.268",
-    "@redwoodjs/auth-dbauth-web": "7.0.0-canary.268+f3c942219",
-    "@redwoodjs/forms": "^7.0.0-canary.268",
-    "@redwoodjs/router": "^7.0.0-canary.268",
-    "@redwoodjs/web": "^7.0.0-canary.268",
+    "@redwoodjs/auth": "7.0.0-canary.283",
+    "@redwoodjs/auth-dbauth-web": "7.0.0-canary.283",
+    "@redwoodjs/forms": "7.0.0-canary.283",
+    "@redwoodjs/router": "7.0.0-canary.283",
+    "@redwoodjs/web": "7.0.0-canary.283",
     "prop-types": "15.8.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.0-canary-035a41c4e-20230704",
+    "react-dom": "18.3.0-canary-035a41c4e-20230704",
     "react-markdown": "^8.0.3"
   },
   "devDependencies": {
-    "@redwoodjs/vite": "7.0.0-canary.268+f3c942219",
+    "@redwoodjs/vite": "7.0.0-canary.283",
     "@tailwindcss/typography": "^0.5.7",
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.16",
